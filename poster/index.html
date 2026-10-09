@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AutoParts Pro</title>
+<link rel="stylesheet" href="poster.css">
+<style>
+  .poster { --accent: #60A5FA; --accent2: #A78BFA; }
+  .stage { position: relative; width: 620px; height: 900px; }
+  .browser { position: absolute; right: 0; top: 70px; width: 610px; }
+  .app { display: grid; grid-template-columns: 150px 1fr; height: 480px; }
+  .side { background: var(--panel-2); border-right: 1px solid var(--line); padding: 18px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .logo { display: flex; align-items: center; gap: 9px; padding: 0 6px 16px; font: 700 15px 'Space Grotesk'; }
+  .logo i { width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: grid; place-items: center; font: 700 12px 'Space Grotesk'; color: #0A0F1E; font-style: normal; }
+  .nav { font: 500 14px Inter; color: var(--muted); padding: 9px 10px; border-radius: 9px; display: flex; align-items: center; gap: 9px; }
+  .nav::before { content: ''; width: 8px; height: 8px; border-radius: 3px; background: #39415C; }
+  .nav.on { background: color-mix(in srgb, var(--accent) 16%, transparent); color: #fff; }
+  .nav.on::before { background: var(--accent); }
+  .main { padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .mh { display: flex; align-items: center; gap: 10px; }
+  .mh h3 { font: 600 20px 'Space Grotesk'; margin-right: auto; }
+  .pill { font: 600 12px Inter; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--line); color: #CDD4E5; }
+  .pill.off { color: #6EE7B7; border-color: rgba(52,211,153,.4); background: rgba(52,211,153,.1); }
+  .search { font: 500 14px Inter; color: #6B7590; padding: 11px 14px; border-radius: 11px; background: var(--panel-2); border: 1px solid var(--line); }
+  table { width: 100%; border-collapse: collapse; font: 500 14px Inter; }
+  th { text-align: left; font: 600 11px Inter; color: #6B7590; text-transform: uppercase; letter-spacing: .07em; padding: 0 6px 8px; border-bottom: 1px solid var(--line); }
+  td { padding: 10px 6px; border-bottom: 1px solid rgba(255,255,255,.06); color: #D3D9E8; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .total { display: flex; justify-content: space-between; align-items: baseline; padding-top: 4px; }
+  .total span { font: 500 14px Inter; color: var(--muted); }
+  .total b { font: 700 28px 'Space Grotesk'; }
+  .btns { display: flex; gap: 10px; margin-top: auto; }
+  .btn { flex: 1; text-align: center; font: 600 14px Inter; padding: 12px; border-radius: 11px; }
+  .btn.p { background: var(--accent); color: #0A0F1E; }
+  .btn.w { border: 1px solid rgba(37,211,102,.5); color: #4ADE80; background: rgba(37,211,102,.08); }
+  .receipt { position: absolute; left: -30px; top: 625px; width: 300px; padding: 20px 20px 16px; border-radius: 12px; background: #F8FAFC; color: #111827; transform: rotate(-4deg); }
+  .receipt .rh { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #111827; padding-bottom: 8px; }
+  .receipt .rh b { font: 700 18px 'Space Grotesk'; letter-spacing: .04em; }
+  .receipt .rh span { font: 500 11px Inter; color: #4B5563; }
+  .receipt .bt { font: 500 12px Inter; margin: 10px 0 6px; }
+  .rl { display: flex; justify-content: space-between; font: 500 12px Inter; padding: 4px 0; border-bottom: 1px dashed #CBD5E1; }
+  .rnet { display: flex; justify-content: space-between; font: 700 14px Inter; background: #111827; color: #fff; padding: 7px 8px; margin-top: 8px; border-radius: 4px; }
+  .rnote { margin-top: 10px; background: #111827; color: #F8FAFC; font-size: 12.5px; line-height: 2.2; padding: 2px 10px 6px; border-radius: 4px; text-align: right; }
+  .roles { position: absolute; right: -8px; top: 700px; padding: 18px 20px; border-radius: 18px; background: #101935; border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
+  .roles .k { font: 600 12px 'JetBrains Mono'; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; }
+  .roles .r { display: flex; gap: 8px; margin-top: 12px; }
+  .roles .r span { font: 600 14px Inter; padding: 8px 12px; border-radius: 10px; background: rgba(255,255,255,.06); border: 1px solid var(--line); }
+  .roles .shops { font: 500 13px Inter; color: var(--muted); margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="grid"></div>
+
+  <div class="left">
+    <div class="eyebrow">Full-Stack Web App</div>
+    <h1>AutoParts <em>Pro</em></h1>
+    <p class="sub">Inventory and point-of-sale for auto-parts shops in Pakistan. One app, many shops, each with its own data.</p>
+    <ul class="feats">
+      <li>Multi-shop: every shop's data is kept separate, with admin, manager and cashier roles</li>
+      <li>Offline-first POS (PWA) keeps selling when the internet drops</li>
+      <li>Urdu/English receipts, 4 invoice templates, payment ledgers and WhatsApp invoices</li>
+    </ul>
+    <div class="chips">
+      <span class="chip hl">React 18</span>
+      <span class="chip hl">Firebase</span>
+      <span class="chip">Vite</span>
+      <span class="chip">Tailwind</span>
+      <span class="chip">Express 5</span>
+      <span class="chip">Firestore</span>
+      <span class="chip">PWA</span>
+      <span class="chip">IndexedDB</span>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="stage">
+      <div class="window browser glow">
+        <div class="titlebar"><span></span><span></span><span></span><div class="ttl">AutoParts Pro · Point of Sale</div></div>
+        <div class="app">
+          <div class="side">
+            <div class="logo"><i>AP</i>AutoParts</div>
+            <div class="nav">Dashboard</div>
+            <div class="nav on">POS</div>
+            <div class="nav">Inventory</div>
+            <div class="nav">Ledger</div>
+            <div class="nav">Invoices</div>
+            <div class="nav">Shops</div>
+            <div class="nav">Users</div>
+          </div>
+          <div class="main">
+            <div class="mh"><h3>New sale</h3><span class="pill off">● Offline ready</span><span class="pill">Cashier</span></div>
+            <div class="search">Search part, SKU or barcode…</div>
+            <table>
+              <tr><th>Item</th><th class="n">Qty</th><th class="n">Rate</th><th class="n">Amount</th></tr>
+              <tr><td>Spark Plug</td><td class="n">2</td><td class="n">220</td><td class="n">440</td></tr>
+              <tr><td>Oil Filter</td><td class="n">1</td><td class="n">650</td><td class="n">650</td></tr>
+              <tr><td>Brake Pads (Front)</td><td class="n">1</td><td class="n">2,800</td><td class="n">2,800</td></tr>
+              <tr><td>Coolant 1L</td><td class="n">1</td><td class="n">950</td><td class="n">950</td></tr>
+            </table>
+            <div class="total"><span>Total (PKR)</span><b>Rs 4,840</b></div>
+            <div class="btns"><div class="btn p">Print receipt</div><div class="btn w">Send on WhatsApp</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="receipt glow">
+        <div class="rh"><b>INVOICE</b><span>Term: Cash</span></div>
+        <div class="bt"><b>Bill To:</b> Walk-in Customer</div>
+        <div class="rl"><span>Spark Plug · 2 × 220</span><span>440</span></div>
+        <div class="rl"><span>Oil Filter · 1 × 650</span><span>650</span></div>
+        <div class="rl"><span>Brake Pads · 1 × 2,800</span><span>2,800</span></div>
+        <div class="rl"><span>Coolant 1L · 1 × 950</span><span>950</span></div>
+        <div class="rnet"><span>Net Amount</span><span>4,840</span></div>
+        <div class="rnote urdu">خراب یا نقصان زدہ اشیاء تبدیل نہیں کی جائیں گی</div>
+      </div>
+
+      <div class="roles glow">
+        <div class="k">Roles</div>
+        <div class="r"><span>Admin</span><span>Manager</span><span>Cashier</span></div>
+        <div class="shops">Each shop sees only its own stock and sales</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
